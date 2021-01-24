@@ -36,12 +36,14 @@ void loop() {
     puzzleCompleted = true;
   }else if (Temp - oldTemp > 4){
     lcd.clear();
-    lcd.print("Too Hot!");
+    lcd.println("Too Hot!");
   }else{
-    oldTemp = Temp;
+    lcd.clear();
+    lcd.print(CalculateTemperature());
+    lcd.println(" C   ");
   }
 
- delay(2500);
+ delay(5000);
  lcd.clear();
  }
  lcd.print("Code: 911");

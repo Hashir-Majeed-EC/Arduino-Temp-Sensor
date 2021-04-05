@@ -12,41 +12,29 @@ float  c1 = 0.00050, c2 = 0.0002999991, c3 = 0.0000003;
 
 void setup() {
  Serial.begin(9600);
- //lcd.begin(16,2);
+
  oldTemp = CalculateTemperature();
  Temp = oldTemp;
+ Serial.print(oldTemp);
 }
 void loop() {
-
- while (!puzzleCompleted){
-  lcd.print("Temp: ");
-
   Temp = CalculateTemperature();
   lcd.print(Temp);
-
-  lcd.println(" C   ");
-
-
-  //Check temperature change (7 degrees)
-  if ((oldTemp - Temp >= 7) && (oldTemp - Temp < 50)){
-    int Display = 911;
+  //CHANGE THE IF STATEMENT FOR -VE TEMP CHANGE
+  if (Temp < oldTemp - 7 && Temp > 0){
     lcd.clear();
-    lcd.print(Display);
-    delay(100000);
-    puzzleCompleted = true;
-  }else if (Temp - oldTemp > 4){
-    lcd.clear();
-    lcd.println("Too Hot!");
-  }else{
-    lcd.clear();
-    lcd.print(CalculateTemperature());
-    lcd.println(" C   ");
+    lcd.print("911");
   }
 
- delay(5000);
- lcd.clear();
- }
- lcd.print("Code: 911");
+  if(Temp > oldTemp + 3){
+    lcd.clear();
+    //lcd.setCursor(0,0);
+    lcd.println("Excessive Heat");
+    
+  }
+  delay(7000);
+  lcd.clear();
+
 }
 
 float CalculateTemperature(){
@@ -64,3 +52,5 @@ float CalculateTemperature(){
  Temp = Temp - 273.15;
  return Temp;
 }
+
+

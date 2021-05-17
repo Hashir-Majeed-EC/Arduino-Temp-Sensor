@@ -8,7 +8,7 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 float oldTemp;
 bool puzzleCompleted = false;
 //Steinhart-Hart coefficients
-float  c1 = 0.00050, c2 = 0.0002999991, c3 = 0.0000003;
+float  c1 = 0.010155, c2 = -0.00118225, c3 = 0.00000524;
 
 void setup() {
  Serial.begin(9600);
